@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sercle.com/sitemap.xml
