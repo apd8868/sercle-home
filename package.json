@@ -4,10 +4,10 @@
   "private": true,
   "description": "Official public entry point for the Sercle ecosystem.",
   "scripts": {
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs && node scripts/check-aeon-legal.mjs",
+    "check:aeon-legal": "node scripts/check-aeon-legal.mjs"
   },
   "engines": {
     "node": ">=20"
   }
 }
-

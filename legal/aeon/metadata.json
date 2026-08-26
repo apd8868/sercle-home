@@ -1,0 +1,20 @@
+{
+  "approvalAuthority": "SP-PRINCIPAL-001 — Sercle Public Legal Authority",
+  "approvalStatus": "APPROVED",
+  "program": "AEON-PUBLIC-LAUNCH-W4-R3-LEGAL-PUBLICATION-EXECUTION-CHANNEL-RECOVERY-001",
+  "documents": [
+    {
+      "effectivePublicationRevision": "R1",
+      "contentSha256": "4b511a0274d6e1d9c9f2c1dd9aad3d9063feecefbff24a2742a50813b333df1c",
+      "route": "/aeon/privacy",
+      "identity": "AEON-PRIVACY-2026-08-26-R1"
+    },
+    {
+      "effectivePublicationRevision": "R1",
+      "contentSha256": "fe1119bcace752b0f1369d1a4769a7cdd444a3441418e99a5003a7bf16eca389",
+      "route": "/aeon/terms",
+      "identity": "AEON-TERMS-2026-08-26-R1"
+    }
+  ],
+  "sourceAttachmentSha256": "599EC81B697390728EA45829D1CF43BA8EDE0EA378AA92F2A959045954B9DFC4"
+}
