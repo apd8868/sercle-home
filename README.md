@@ -6,7 +6,7 @@ Official public entry point for the Sercle ecosystem.
 
 This repository contains the Sercle landing experience, global navigation, product directory, ecosystem introduction, brand assets, contact information, legal pages, and Vercel deployment configuration.
 
-It intentionally contains no product implementation. Earth, MYUVO, Story, Lens, and iAudio are developed and deployed from their own repositories.
+It intentionally contains no child-product implementation. Aeon, Narrative, Atmos, and the other Sercle platforms retain their own product experiences and deployments.
 
 ## Local preview
 
@@ -28,5 +28,5 @@ Import `apd8868/sercle-home` into Vercel as an **Other** framework project. No b
 
 ## Program
 
-SERCLE-V1-001 — Sercle Home Portal Foundation
+SERCLE-PUBLIC-WEB-V1-PARENT-PORTAL-AND-ECOSYSTEM-NAVIGATION-001
 
