@@ -1,18 +1,6 @@
-const button = document.querySelector('[data-menu-button]');
-const nav = document.querySelector('[data-nav]');
-
-button?.addEventListener('click', () => {
-  const open = button.getAttribute('aria-expanded') === 'true';
-  button.setAttribute('aria-expanded', String(!open));
-  nav?.toggleAttribute('data-open', !open);
-});
-
-nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  button?.setAttribute('aria-expanded', 'false');
-  nav.removeAttribute('data-open');
-}));
-
-document.querySelectorAll('[data-year]').forEach((node) => {
-  node.textContent = String(new Date().getFullYear());
-});
-
+const button=document.querySelector('[data-menu-button]'),nav=document.querySelector('[data-nav]');button?.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));nav?.toggleAttribute('data-open',!open)});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav?.hasAttribute('data-open')){nav.removeAttribute('data-open');button.setAttribute('aria-expanded','false');button.focus()}});nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.removeAttribute('data-open');button?.setAttribute('aria-expanded','false')}));document.querySelectorAll('[data-year]').forEach(n=>n.textContent=String(new Date().getFullYear()));
+const worlds={aeon:{name:'AEON',copy:'Explore Earth across time.',status:'LIVE',href:'https://aeon.sercle.com',color:'var(--aeon)'},atmos:{name:'ATMOS',copy:'A digital home for presence and ambience.',status:'LIVE',href:'https://atmos.sercle.com',color:'var(--atmos)'},narrative:{name:'NARRATIVE',copy:'A workspace for shaping stories.',status:'COMING SOON'},cast:{name:'CAST',copy:'Actors, identity, behavior, and performance.',status:'IN DEVELOPMENT'},cinema:{name:'CINEMA',copy:'A place for finished films and stories.',status:'FUTURE'}};
+const field=document.querySelector('[data-world-field]'),options=[...document.querySelectorAll('[data-world]')],detail=document.querySelector('[data-world-detail]');let active=0,previous=0;
+options.forEach(o=>o.tabIndex=-1);
+function select(index){previous=active;active=(index+options.length)%options.length;options.forEach((o,i)=>{const on=i===active;o.classList.toggle('is-focused',on);o.dataset.state=on?'FOCUSED':'DISCOVERED';o.setAttribute('aria-selected',String(on))});const option=options[active],world=worlds[option.dataset.world];field?.setAttribute('aria-activedescendant',option.id);if(!detail||!world)return;detail.dataset.state=world.href?'ENTERABLE':'UNAVAILABLE';detail.querySelector('[data-detail-status]').textContent=world.status;detail.querySelector('[data-detail-status]').style.color=world.color||'var(--mist)';detail.querySelector('[data-detail-name]').textContent=world.name;detail.querySelector('[data-detail-copy]').textContent=world.copy;const enter=detail.querySelector('[data-detail-enter]');if(world.href){enter.hidden=false;enter.href=world.href;enter.querySelector('.sr-only').textContent=' '+world.name+', external site'}else{enter.hidden=true;enter.removeAttribute('href')}}
+options.forEach((o,i)=>o.addEventListener('click',()=>{select(i);field?.focus()}));field?.addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown'].includes(e.key)){e.preventDefault();select(active+1)}else if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();select(active-1)}else if(e.key==='Enter'){e.preventDefault();detail.dataset.state='APPROACH';const enter=detail.querySelector('[data-detail-enter]:not([hidden])');enter?.focus()}else if(e.key==='Escape'){e.preventDefault();const target=previous;select(target);field.focus()}});select(0);
