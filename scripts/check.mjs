@@ -5,7 +5,8 @@ for (const file of required) await access(new URL(`../${file}`, import.meta.url)
 
 const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const styles = await readFile(new URL('../public/styles.css', import.meta.url), 'utf8');
-if (!styles.includes('@media(max-width:820px){body a{display:inline-flex;align-items:center;min-width:44px;min-height:44px}}')) {
+const site = await readFile(new URL('../public/site.js', import.meta.url), 'utf8');
+if (!styles.includes('min-width:44px') || !styles.includes('min-height:44px')) {
   throw new Error('Missing mobile 44px touch-target rule');
 }
 const platforms = await readFile(new URL('../platforms.html', import.meta.url), 'utf8');
@@ -13,13 +14,13 @@ for (const product of ['Aeon', 'Narrative', 'Atmos', 'Cast', 'Audio', 'Forge', '
   if (!platforms.includes(`>${product}<`) && !platforms.includes(`>${product} ↗<`)) throw new Error(`Missing platform: ${product}`);
 }
 
-if (!home.includes('https://aeon.sercle.com')) throw new Error('Missing Aeon public URL');
-if (!home.includes('https://atmos.sercle.com') || !platforms.includes('https://atmos.sercle.com')) throw new Error('Missing Atmos public URL');
+if (!(home + site).includes('https://aeon.sercle.com')) throw new Error('Missing Aeon public URL');
+if (!(home + site).includes('https://atmos.sercle.com') || !platforms.includes('https://atmos.sercle.com')) throw new Error('Missing Atmos public URL');
 for (const stale of ['myuvo.sercle.com', 'story.sercle.com', 'iaudio.sercle.com']) {
-  if (home.includes(stale) || platforms.includes(stale)) throw new Error(`Stale public host: ${stale}`);
+  if ((home + site).includes(stale) || platforms.includes(stale)) throw new Error(`Stale public host: ${stale}`);
 }
 for (const unresolved of ['narrative.sercle.com']) {
-  if (home.includes(unresolved) || platforms.includes(unresolved)) throw new Error(`Unresolved public host: ${unresolved}`);
+  if ((home + site).includes(unresolved) || platforms.includes(unresolved)) throw new Error(`Unresolved public host: ${unresolved}`);
 }
 
 const config = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'));

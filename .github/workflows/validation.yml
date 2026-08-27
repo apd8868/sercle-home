@@ -1,0 +1,26 @@
+name: Validation
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm run check
+      - run: node --test scripts/public-health-identity.test.mjs
+      - name: Verify candidate monitor identity
+        run: node --input-type=module -e "import {readFile} from 'node:fs/promises';import {assertDesignV1Identity} from './scripts/public-health-identity.mjs';assertDesignV1Identity(await readFile('./index.html','utf8'))"
+      - name: Verify diff hygiene
+        run: git diff --check "origin/${{ github.base_ref }}...HEAD"
