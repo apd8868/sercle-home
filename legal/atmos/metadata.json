@@ -1,0 +1,19 @@
+{
+  "approvalAuthority": "SP-PRINCIPAL-001 — Sercle Public Legal Authority",
+  "approvalStatus": "APPROVED",
+  "program": "ATMOS-PUBLIC-LAUNCH-W3-R3-LEGAL-PUBLICATION-EXECUTION-RECOVERY-001",
+  "documents": [
+    {
+      "effectivePublicationRevision": "R1",
+      "contentSha256": "5ce66fa19fc56a980b2e129f619f33d3a7147b9df7570ec6970de7c3167791f5",
+      "route": "/atmos/privacy",
+      "identity": "ATMOS-PRIVACY-2026-08-26-R0-DRAFT"
+    },
+    {
+      "effectivePublicationRevision": "R1",
+      "contentSha256": "d1bf035d8df6d66bc09dac4043708372cdd82323b3d7c8c08300e18fb386d1fa",
+      "route": "/atmos/terms",
+      "identity": "ATMOS-TERMS-2026-08-26-R0-DRAFT"
+    }
+  ]
+}

@@ -35,12 +35,44 @@
   ],
   "rewrites": [
     {
+      "source": "/platforms",
+      "destination": "/platforms.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/status",
+      "destination": "/status.html"
+    },
+    {
+      "source": "/support",
+      "destination": "/support.html"
+    },
+    {
       "source": "/privacy",
       "destination": "/privacy.html"
     },
     {
       "source": "/terms",
       "destination": "/terms.html"
+    },
+    {
+      "source": "/aeon/privacy",
+      "destination": "/aeon/privacy.html"
+    },
+    {
+      "source": "/aeon/terms",
+      "destination": "/aeon/terms.html"
+    },
+    {
+      "source": "/atmos/privacy",
+      "destination": "/atmos/privacy.html"
+    },
+    {
+      "source": "/atmos/terms",
+      "destination": "/atmos/terms.html"
     }
   ]
 }
