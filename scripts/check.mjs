@@ -1,14 +1,12 @@
-import { access, readFile } from 'node:fs/promises';
-
-const required = ['index.html', 'privacy.html', 'terms.html', 'public/styles.css', 'public/site.js', 'brand/README.md', 'vercel.json', 'README.md', 'LICENSE', '.gitignore'];
-for (const file of required) await access(new URL(`../${file}`, import.meta.url));
-
-const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-for (const product of ['Earth', 'MYUVO', 'Story', 'Lens', 'iAudio', 'Future platforms']) {
-  if (!home.includes(product)) throw new Error(`Missing product: ${product}`);
-}
-
-const config = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'));
-if (!Array.isArray(config.headers) || !Array.isArray(config.rewrites)) throw new Error('Invalid Vercel configuration');
-console.log('Sercle Home foundation checks passed.');
-
+import {access,readFile} from 'node:fs/promises';
+const required=['index.html','privacy.html','terms.html','public/styles.css','public/site.js','public/favicon.svg','robots.txt','sitemap.xml','brand/README.md','vercel.json','README.md','LICENSE','.gitignore'];for(const file of required)await access(new URL('../'+file,import.meta.url));
+const home=await readFile(new URL('../index.html',import.meta.url),'utf8');const css=await readFile(new URL('../public/styles.css',import.meta.url),'utf8');const js=await readFile(new URL('../public/site.js',import.meta.url),'utf8');
+const worlds=['Aeon','Atmos','Narrative','Cast','Audio','Forge','Lens','Render','Stage','Cinema','Loop'];for(const world of worlds)if(!home.includes(world))throw new Error('Missing world: '+world);
+const lines=['Explore Earth across time.','A digital home for presence and ambience.','A workspace for shaping stories.','Actors, identity, behavior, and performance.','Voice, sound, and acoustic intelligence.','Build the assets and structures of worlds.','Camera, optics, attention, and visual language.','Turn worlds into rendered reality.','Turn stories into audiovisual productions.','A place for finished films and stories.','A social world for discovering and sharing video.'];for(const line of lines)if(!home.includes(line))throw new Error('Missing identity: '+line);
+for(const unsafe of ['narrative.sercle.com','cast.sercle.com','audio.sercle.com','forge.sercle.com','lens.sercle.com','render.sercle.com','stage.sercle.com','cinema.sercle.com','loop.sercle.com','product-grid','product-card'])if(home.includes(unsafe))throw new Error('Unsafe or legacy marker: '+unsafe);
+for(const safe of ['https://aeon.sercle.com','https://atmos.sercle.com'])if(!home.includes(safe))throw new Error('Missing live link: '+safe);
+for(const token of ['--void:#080909','--warm:#f2eee7','--focus:2px solid var(--warm)','@media(prefers-reduced-motion:reduce)'])if(!css.includes(token))throw new Error('Missing token: '+token);
+for(const behavior of ['ArrowRight','ArrowLeft','Enter','Escape','aria-activedescendant'])if(!js.includes(behavior))throw new Error('Missing keyboard behavior: '+behavior);
+const privacy=await readFile(new URL('../privacy.html',import.meta.url),'utf8');const terms=await readFile(new URL('../terms.html',import.meta.url),'utf8');for(const text of ['Effective August 22, 2026','We do not sell personal information.'])if(!privacy.includes(text))throw new Error('Privacy substance changed');for(const text of ['Effective August 22, 2026','The website is provided “as is” and “as available”'])if(!terms.includes(text))throw new Error('Terms substance changed');
+const config=JSON.parse(await readFile(new URL('../vercel.json',import.meta.url),'utf8'));const headers=config.headers?.[0]?.headers||[];for(const key of ['X-Content-Type-Options','Referrer-Policy','Permissions-Policy','Content-Security-Policy'])if(!headers.some(h=>h.key===key))throw new Error('Missing security header: '+key);
+console.log('Sercle Design V1 conformance checks passed.');

@@ -1,18 +1,5 @@
-const button = document.querySelector('[data-menu-button]');
-const nav = document.querySelector('[data-nav]');
-
-button?.addEventListener('click', () => {
-  const open = button.getAttribute('aria-expanded') === 'true';
-  button.setAttribute('aria-expanded', String(!open));
-  nav?.toggleAttribute('data-open', !open);
-});
-
-nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-  button?.setAttribute('aria-expanded', 'false');
-  nav.removeAttribute('data-open');
-}));
-
-document.querySelectorAll('[data-year]').forEach((node) => {
-  node.textContent = String(new Date().getFullYear());
-});
-
+const button=document.querySelector('[data-menu-button]');const nav=document.querySelector('[data-nav]');button?.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')==='true';button.setAttribute('aria-expanded',String(!open));nav?.toggleAttribute('data-open',!open)});nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{button?.setAttribute('aria-expanded','false');nav?.removeAttribute('data-open')}));document.querySelectorAll('[data-year]').forEach(node=>node.textContent=String(new Date().getFullYear()));
+const worlds={aeon:{name:'AEON',copy:'Explore Earth across time.',status:'LIVE',href:'https://aeon.sercle.com',color:'var(--aeon)'},atmos:{name:'ATMOS',copy:'A digital home for presence and ambience.',status:'LIVE',href:'https://atmos.sercle.com',color:'var(--atmos)'},narrative:{name:'NARRATIVE',copy:'A workspace for shaping stories.',status:'COMING SOON'},cast:{name:'CAST',copy:'Actors, identity, behavior, and performance.',status:'IN DEVELOPMENT'},cinema:{name:'CINEMA',copy:'A place for finished films and stories.',status:'FUTURE'}};
+const field=document.querySelector('[data-world-field]');const options=[...document.querySelectorAll('[data-world]')];const detail=document.querySelector('[data-world-detail]');let active=0;
+function select(index,{focus=false}={}){active=(index+options.length)%options.length;options.forEach((o,i)=>{const on=i===active;o.classList.toggle('is-focused',on);o.setAttribute('aria-selected',String(on))});const option=options[active],world=worlds[option.dataset.world];field?.setAttribute('aria-activedescendant',option.id);if(detail&&world){detail.querySelector('[data-detail-status]').textContent=world.status;detail.querySelector('[data-detail-status]').style.color=world.color||'var(--mist)';detail.querySelector('[data-detail-name]').textContent=world.name;detail.querySelector('[data-detail-copy]').textContent=world.copy;const enter=detail.querySelector('[data-detail-enter]');if(world.href){enter.hidden=false;enter.href=world.href;enter.querySelector('.sr-only').textContent=' '+world.name+', external site'}else{enter.hidden=true;enter.removeAttribute('href')}}if(focus)field?.focus()}
+options.forEach((o,i)=>o.addEventListener('click',()=>select(i)));field?.addEventListener('keydown',e=>{if(['ArrowRight','ArrowDown'].includes(e.key)){e.preventDefault();select(active+1)}if(['ArrowLeft','ArrowUp'].includes(e.key)){e.preventDefault();select(active-1)}if(e.key==='Enter'){const a=detail?.querySelector('[data-detail-enter]:not([hidden])');a?.focus()}if(e.key==='Escape'){e.preventDefault();select(0);field.focus()}});select(0);
