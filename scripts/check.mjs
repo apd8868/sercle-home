@@ -4,6 +4,10 @@ const required = ['index.html', 'platforms.html', 'about.html', 'status.html', '
 for (const file of required) await access(new URL(`../${file}`, import.meta.url));
 
 const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+const styles = await readFile(new URL('../public/styles.css', import.meta.url), 'utf8');
+if (!styles.includes('@media(max-width:820px){body a{display:inline-flex;align-items:center;min-width:44px;min-height:44px}}')) {
+  throw new Error('Missing mobile 44px touch-target rule');
+}
 const platforms = await readFile(new URL('../platforms.html', import.meta.url), 'utf8');
 for (const product of ['Aeon', 'Narrative', 'Atmos', 'Cast', 'Audio', 'Forge', 'Lens', 'Render', 'Stage', 'Cinema', 'Loop']) {
   if (!platforms.includes(`>${product}<`) && !platforms.includes(`>${product} ↗<`)) throw new Error(`Missing platform: ${product}`);
