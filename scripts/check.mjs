@@ -1,18 +1,31 @@
 import { access, readFile } from 'node:fs/promises';
 
-const required = ['index.html', 'privacy.html', 'terms.html', 'public/styles.css', 'public/site.js', 'brand/README.md', 'vercel.json', 'README.md', 'LICENSE', '.gitignore'];
+const required = ['index.html', 'platforms.html', 'about.html', 'status.html', 'support.html', 'privacy.html', 'terms.html', 'aeon/privacy.html', 'aeon/terms.html', 'public/styles.css', 'public/site.js', 'robots.txt', 'sitemap.xml', 'brand/README.md', 'vercel.json', 'README.md', 'LICENSE', '.gitignore'];
 for (const file of required) await access(new URL(`../${file}`, import.meta.url));
 
 const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-for (const product of ['Aeon', 'Atmos', 'Story', 'Lens', 'iAudio', 'Future platforms']) {
-  if (!home.includes(product)) throw new Error(`Missing product: ${product}`);
+const styles = await readFile(new URL('../public/styles.css', import.meta.url), 'utf8');
+if (!styles.includes('@media(max-width:820px){body a{display:inline-flex;align-items:center;min-width:44px;min-height:44px}}')) {
+  throw new Error('Missing mobile 44px touch-target rule');
+}
+const platforms = await readFile(new URL('../platforms.html', import.meta.url), 'utf8');
+for (const product of ['Aeon', 'Narrative', 'Atmos', 'Cast', 'Audio', 'Forge', 'Lens', 'Render', 'Stage', 'Cinema', 'Loop']) {
+  if (!platforms.includes(`>${product}<`) && !platforms.includes(`>${product} ↗<`)) throw new Error(`Missing platform: ${product}`);
 }
 
 if (!home.includes('https://aeon.sercle.com')) throw new Error('Missing Aeon public URL');
-if (!home.includes('https://atmos.sercle.com')) throw new Error('Missing Atmos public URL');
-if (home.includes('https://myuvo.sercle.com')) throw new Error('Stale MYUVO public URL');
+if (!home.includes('https://atmos.sercle.com') || !platforms.includes('https://atmos.sercle.com')) throw new Error('Missing Atmos public URL');
+for (const stale of ['myuvo.sercle.com', 'story.sercle.com', 'iaudio.sercle.com']) {
+  if (home.includes(stale) || platforms.includes(stale)) throw new Error(`Stale public host: ${stale}`);
+}
+for (const unresolved of ['narrative.sercle.com']) {
+  if (home.includes(unresolved) || platforms.includes(unresolved)) throw new Error(`Unresolved public host: ${unresolved}`);
+}
 
 const config = JSON.parse(await readFile(new URL('../vercel.json', import.meta.url), 'utf8'));
 if (!Array.isArray(config.headers) || !Array.isArray(config.rewrites)) throw new Error('Invalid Vercel configuration');
-console.log('Sercle Home foundation checks passed.');
+for (const route of ['/platforms', '/about', '/status', '/support', '/privacy', '/terms', '/aeon/privacy', '/aeon/terms']) {
+  if (!config.rewrites.some((rewrite) => rewrite.source === route)) throw new Error(`Missing route: ${route}`);
+}
+console.log('Sercle public web V1 checks passed.');
 
