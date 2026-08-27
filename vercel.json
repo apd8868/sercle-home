@@ -41,6 +41,14 @@
     {
       "source": "/aeon/terms",
       "destination": "/aeon/terms.html"
+    },
+    {
+      "source": "/atmos/privacy",
+      "destination": "/atmos/privacy.html"
+    },
+    {
+      "source": "/atmos/terms",
+      "destination": "/atmos/terms.html"
     }
   ]
 }
