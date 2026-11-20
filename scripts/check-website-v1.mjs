@@ -47,7 +47,8 @@ const noindex = '<meta name="robots" content="noindex,nofollow">';
 for (const [page, html] of Object.entries(pages)) {
   const placeholder = page === 'account.html' || page === 'not-in-prototype.html';
   if (placeholder !== html.includes(noindex)) fail(`noindex scope wrong on ${page}`);
-  if (/LOCAL WEBSITE CANDIDATE|NOT PRODUCTION|this candidate/i.test(html)) fail(`Candidate marker on ${page}`);
+  if (/LOCAL WEBSITE CANDIDATE|NOT PRODUCTION|this candidate|local preview/i.test(html)) fail(`Candidate marker on ${page}`);
+  if (/<!--[^]*?(DRAFT|pending|not published)[^]*?-->/i.test(html)) fail(`Unreleased-status comment on ${page}`);
 }
 // Scripts: user-visible strings only (developer comment lines are skipped; they are never rendered).
 const code = (src) => src.split('\n').filter((l) => !/^\s*\/\//.test(l)).map((l) => l.replace(/\s\/\/ .*$/, '')).join('\n');
