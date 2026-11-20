@@ -1,4 +1,3 @@
-// UIUX-014: homepage world gallery (moved unchanged from the UIUX-009 inline script; CSP script-src 'self').
 document.getElementById('world-grid').innerHTML = SERCLE_WORLDS.map(function (w) {
   return '<li><a class="world-card" href="world.html#' + w.id + '">' +
     worldPicture(w.id, '(max-width:359px) calc(100vw - 32px), (max-width:599px) calc(50vw - 22px), (max-width:1023px) calc(33vw - 30px), 210px', 'portrait') +

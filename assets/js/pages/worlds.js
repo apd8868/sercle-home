@@ -1,5 +1,3 @@
-// UIUX-014: world directory (moved from the UIUX-009 inline script). Change: the card image kind (square < 600 px, wide
-// otherwise) now follows viewport changes instead of being fixed at first render.
 (function () {
   var filters = [{ k: 'all', label: 'All' }, { k: 'live', label: 'Live' }, { k: 'soon', label: 'Coming soon' }, { k: 'dev', label: 'In development' }, { k: 'future', label: 'Future' }];
   var state = { status: 'all', q: '' };
@@ -37,7 +35,6 @@
     var k = (location.hash || '').replace('#', '');
     state.status = filters.some(function (f) { return f.k === k; }) ? k : 'all'; render();
   });
-  // r2 (review finding 5): a re-render on zoom or rotation must not drop keyboard focus from a card.
   function onNarrowChange() {
     var a = document.activeElement, card = a && a.closest && a.closest('#dir-grid .dir-card'), href = card && card.getAttribute('href');
     render();

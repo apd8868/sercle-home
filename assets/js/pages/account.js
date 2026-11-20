@@ -1,6 +1,3 @@
-// UIUX-014: Account entry placeholder. The public website does not implement sign-in, registration or recovery: those are
-// planned for Sercle-Account, whose portal (routes /sign-in, /sign-up, /recovery) is a nonproduction candidate, not deployed.
-// This page collects no input and makes no request. (r2: wording no longer states Account as available — review finding 1.)
 document.getElementById('logo-slot').outerHTML = SERCLE_LOGO;
 (function () {
   var ENTRIES = {

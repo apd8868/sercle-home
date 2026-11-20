@@ -1,7 +1,3 @@
-// Shared components: candidate banner, public header (with accessible mobile menu), footer.
-// UIUX-014 LOCAL WEBSITE CANDIDATE (from UIUX-004/009). No network calls, no storage, no telemetry.
-// UIUX-014 changes: no inline script or handler is needed by any page (CSP script-src 'self'); Account entries go to the
-// account.html placeholder; image failure is caught by one capture-phase listener instead of onerror attributes.
 (function () {
   var LOGO = '<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><path d="M69.837 32.572A32 32 0 1 0 69.837 67.428"/><circle cx="81.784" cy="50" r="5.12"/></svg>';
   window.SERCLE_LOGO = LOGO;
@@ -22,7 +18,7 @@
     }).join('');
   }
   function banner() {
-    return ''; // V1 release text (prepared; needs Owner approval): candidate banner removed
+    return '';
   }
   // Image failure: 'error' does not bubble, so listen in the capture phase. Registered while <head> is parsed, before any <img>.
   window.sercleImgFail = function (img) { var p = img.closest('picture'); if (p) p.classList.add('img-failed'); img.remove(); };

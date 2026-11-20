@@ -55,6 +55,32 @@ const code = (src) => src.split('\n').filter((l) => !/^\s*\/\//.test(l)).map((l)
 if (/LOCAL WEBSITE CANDIDATE|NOT PRODUCTION|not in this candidate|this candidate/i.test(code(chrome) + code(world) + code(na) + code(data))) fail('Candidate marker in scripts');
 if (!/function banner\(\) \{\s*return '';/.test(chrome)) fail('Candidate banner is rendered');
 
+// Homepage keeps the search and social-preview metadata the previous homepage published.
+for (const tag of [
+  '<meta name="description" content="Sercle is the quiet connective space where worlds become discoverable.">',
+  '<meta property="og:title" content="Sercle — Every world begins with curiosity.">',
+  '<meta property="og:description" content="Discover the worlds of Sercle.">',
+  '<meta property="og:type" content="website">',
+  '<meta property="og:url" content="https://sercle.com/">',
+  '<meta name="twitter:card" content="summary">',
+]) {
+  if (!pages['index.html'].includes(tag)) fail(`Homepage metadata missing: ${tag}`);
+}
+
+// No release-status or internal-process notes in shipped comments (HTML, JS, CSS).
+const statusWords = /CANDIDATE|PROTOTYPE|DRAFT|pending|UIUX-|RC-0|OD-[A-Z0-9]|nonproduction|SERCLE-POL/i;
+const shipped = [...Object.entries(pages)];
+for (const dirName of ['assets/js/', 'assets/css/']) {
+  for (const p of (await readdir(new URL(dirName, root), { recursive: true })).filter((x) => /\.(js|css)$/.test(x))) {
+    shipped.push([dirName + p.replaceAll('\\', '/'), await read(dirName + p)]);
+  }
+}
+for (const [file, src] of shipped) {
+  const comments = [...src.matchAll(/<!--[^]*?-->|\/\*[^]*?\*\/|(?:^|\s)\/\/[^\n]*/g)].map((m) => m[0]);
+  const hit = comments.find((c) => statusWords.test(c.replace(/not-in-prototype/gi, '')));
+  if (hit) fail(`Status or internal note in a shipped comment (${file}): ${hit.trim().slice(0, 80)}`);
+}
+
 // AI disclosure (D1 Credits, D2 captions) and NASA credit.
 if (!data.includes("window.WORLD_D2 = ['atmos', 'cast', 'loop', 'forge', 'stage', 'cinema'];")) fail('D2 caption list changed');
 if (!data.includes('AI-generated illustration. The people shown are not intended to depict real persons.')) fail('D2 caption text changed');

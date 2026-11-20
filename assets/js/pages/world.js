@@ -1,5 +1,3 @@
-// UIUX-014: World preview (moved from the UIUX-009 inline script). Changes: no inline style attributes; an unknown
-// world id shows a not-found state instead of silently showing Aeon; an empty hash still opens the first World.
 function showWorld() {
   var id = (location.hash || '#' + SERCLE_WORLDS[0].id).slice(1);
   var i = SERCLE_WORLDS.findIndex(function (w) { return w.id === id; });

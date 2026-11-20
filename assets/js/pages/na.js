@@ -1,5 +1,3 @@
-// UIUX-014: "not in this candidate" destinations (moved from the UIUX-009 inline script). Account destinations now live on
-// account.html; the old keys are kept so earlier links still explain themselves.
 var PAGES = {
   about: ['About', 'See the About page.'],
   community: ['Community', 'A Community page is not available yet.'],
