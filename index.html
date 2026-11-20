@@ -1,32 +1,75 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#050606"><meta name="description" content="Sercle is the quiet connective space where worlds become discoverable.">
-<link rel="canonical" href="https://sercle.com/"><meta property="og:title" content="Sercle — Every world begins with curiosity."><meta property="og:description" content="Discover the worlds of Sercle."><meta property="og:type" content="website"><meta property="og:url" content="https://sercle.com/"><meta name="twitter:card" content="summary">
-<title>Sercle — Every world begins with curiosity.</title><link rel="icon" href="/public/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/public/styles.css"><script defer src="/public/site.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; media-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sercle — Every world begins with curiosity.</title>
+<link rel="canonical" href="https://sercle.com/">
+<link rel="preload" as="image" type="image/avif" href="assets/img/earth-hero-1100.avif" imagesrcset="assets/img/earth-hero-720.avif 720w, assets/img/earth-hero-1100.avif 1100w, assets/img/earth-hero-1600.avif 1600w" imagesizes="(max-width:599px) 86vw, (max-width:1023px) 80vw, 46vw" fetchpriority="high">
+<link rel="icon" href="assets/brand/sercle-favicon-official.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/public.css">
+<script src="assets/js/worlds-data.js"></script>
+<script src="assets/js/components.js"></script>
 </head>
-<body class="home-page"><a class="skip-link" href="#universe">Skip to worlds</a>
-<main class="universe" id="universe" aria-labelledby="hero-title" data-universe>
-  <h1 id="hero-title">Every world begins with curiosity.</h1>
-  <svg class="orbit-map" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true"><ellipse cx="720" cy="450" rx="205" ry="128"/><ellipse cx="720" cy="450" rx="335" ry="208"/><ellipse cx="720" cy="450" rx="470" ry="292"/><ellipse cx="720" cy="450" rx="625" ry="365"/></svg>
-  <button class="sercle-home" type="button" aria-label="Sercle home — reset universe" data-home><svg class="symbol center-symbol" viewBox="0 0 100 100" aria-hidden="true"><path d="M70.713 34A32 32 0 1 0 70.713 66"/><circle cx="85" cy="50" r="4.267"/></svg><span class="wordmark">SERCLE</span><span class="core-phrase">Every world begins with curiosity.</span></button>
-  <div class="world-system" role="listbox" aria-label="Sercle worlds" data-world-system>
-    <button class="world world-aeon" id="world-aeon" type="button" role="option" aria-selected="false" aria-label="Aeon, live. Explore Earth across time." data-world="aeon" data-orbit="2" data-angle="216"><span class="world-body"></span><span class="world-label">AEON</span></button>
-    <button class="world world-atmos" id="world-atmos" type="button" role="option" aria-selected="false" aria-label="Atmos, live. A digital home for presence and ambience." data-world="atmos" data-orbit="1" data-angle="232"><span class="world-body"></span><span class="world-label">ATMOS</span></button>
-    <button class="world world-narrative" id="world-narrative" type="button" role="option" aria-selected="false" aria-label="Narrative, coming soon. A workspace for shaping stories." data-world="narrative" data-orbit="3" data-angle="304"><span class="world-body"></span><span class="world-label">NARRATIVE</span></button>
-    <button class="world world-cast" id="world-cast" type="button" role="option" aria-selected="false" aria-label="Cast, in development." data-world="cast" data-orbit="0" data-angle="198"><span class="world-body"></span><span class="world-label">CAST</span></button>
-    <button class="world world-audio" id="world-audio" type="button" role="option" aria-selected="false" aria-label="Audio, in development." data-world="audio" data-orbit="3" data-angle="162"><span class="world-body"></span><span class="world-label">AUDIO</span></button>
-    <button class="world world-forge" id="world-forge" type="button" role="option" aria-selected="false" aria-label="Forge, in development." data-world="forge" data-orbit="2" data-angle="136"><span class="world-body"></span><span class="world-label">FORGE</span></button>
-    <button class="world world-lens" id="world-lens" type="button" role="option" aria-selected="false" aria-label="Lens, in development." data-world="lens" data-orbit="1" data-angle="92"><span class="world-body"></span><span class="world-label">LENS</span></button>
-    <button class="world world-render" id="world-render" type="button" role="option" aria-selected="false" aria-label="Render, in development." data-world="render" data-orbit="0" data-angle="344"><span class="world-body"></span><span class="world-label">RENDER</span></button>
-    <button class="world world-stage" id="world-stage" type="button" role="option" aria-selected="false" aria-label="Stage, in development." data-world="stage" data-orbit="1" data-angle="22"><span class="world-body"></span><span class="world-label">STAGE</span></button>
-    <button class="world world-cinema world-future" id="world-cinema" type="button" role="option" aria-selected="false" aria-label="Cinema, future." data-world="cinema" data-orbit="2" data-angle="42"><span class="world-body"></span><span class="world-label">CINEMA</span></button>
-    <button class="world world-loop world-future" id="world-loop" type="button" role="option" aria-selected="false" aria-label="Loop, future." data-world="loop" data-orbit="3" data-angle="14"><span class="world-body"></span><span class="world-label">LOOP</span></button>
-  </div>
-  <aside class="world-detail" aria-live="polite" aria-atomic="true" hidden data-world-detail><p class="detail-status" data-detail-status></p><h2 data-detail-name></h2><p class="detail-copy" data-detail-copy></p><a class="detail-enter" data-detail-enter hidden>Enter <span aria-hidden="true">↗</span><span class="sr-only" data-enter-label></span></a></aside>
-  <button class="universe-menu" type="button" aria-expanded="false" aria-controls="universe-navigation" aria-label="Open navigation" data-menu-button><span></span><span></span><span></span></button><div class="nav-scrim" hidden data-nav-scrim></div>
-  <nav class="universe-navigation" id="universe-navigation" aria-label="Sercle navigation" hidden data-nav><button class="nav-close" type="button" aria-label="Close navigation" data-nav-close>×</button><a href="/platforms">Worlds / Directory</a><a href="/about">About</a><a href="/status">Status</a><a href="/support">Support</a><a href="/privacy">Legal</a><a class="terms-link" href="/terms">Terms</a></nav>
+<body class="theme-cinematic">
+<div id="chrome-top" data-current="home" data-overlay="true"></div>
+<script src="assets/js/chrome-boot.js"></script>
+<main id="main" tabindex="-1">
+  <section class="hero" aria-labelledby="hero-title">
+    <picture class="hero-space" aria-hidden="true"><source type="image/webp" media="(max-width:1023px)" srcset="assets/img/space-background-960.webp"><source type="image/webp" srcset="assets/img/space-background-1920.webp"><img src="assets/img/space-background-960.jpg" alt="" width="1920" height="1200" decoding="async"></picture>
+    <svg class="orbit back" viewBox="0 0 920 420" aria-hidden="true" focusable="false"><ellipse cx="460" cy="210" rx="452" ry="150" transform="rotate(-14 460 210)"/></svg>
+    <picture class="hero-earth" aria-hidden="true"><source type="image/avif" srcset="assets/img/earth-hero-720.avif 720w, assets/img/earth-hero-1100.avif 1100w, assets/img/earth-hero-1600.avif 1600w" sizes="(max-width:599px) 86vw, (max-width:1023px) 80vw, 46vw"><source type="image/webp" srcset="assets/img/earth-hero-720.webp 720w, assets/img/earth-hero-1100.webp 1100w, assets/img/earth-hero-1600.webp 1600w" sizes="(max-width:599px) 86vw, (max-width:1023px) 80vw, 46vw"><img src="assets/img/earth-hero-720.png" alt="" width="720" height="840" fetchpriority="high" decoding="async"></picture>
+    <svg class="orbit front" viewBox="0 0 920 420" aria-hidden="true" focusable="false"><defs><clipPath id="orbit-front"><rect x="0" y="222" width="920" height="200"/></clipPath></defs><ellipse cx="460" cy="210" rx="452" ry="150" transform="rotate(-14 460 210)" clip-path="url(#orbit-front)"/><g class="glint-path"><circle class="glint" cx="8" cy="210" r="3.2" transform="rotate(-14 460 210)"/></g></svg>
+    <div class="hero-inner">
+      <p class="eyebrow">A more open tomorrow</p>
+      <h1 id="hero-title">Every world<br> begins with<br> <em>curiosity.</em></h1>
+      <p class="lede">Sercle is a connected universe of AI-native tools for exploring, creating, and building a more open tomorrow.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="worlds.html">Explore Worlds <span aria-hidden="true">→</span></a>
+        <button class="btn btn-ghost" type="button" aria-disabled="true" aria-describedby="video-na"><span aria-hidden="true">▶</span> Watch video</button>
+        <p class="cta-note" id="video-na">Video coming soon.</p>
+      </div>
+      <p class="scroll-cue" aria-hidden="true">SCROLL<span>↓</span></p>
+    </div>
+    <p class="hero-words" aria-hidden="true">PEOPLE<br>IDEAS<br>WORLDS<br>TOGETHER</p>
+    <p class="hero-italic">A universe<br>for real creators.</p>
+  </section>
+
+  <section class="section" aria-labelledby="worlds-title">
+    <div class="section-head">
+      <div><p class="eyebrow">The Sercle universe</p><h2 id="worlds-title">Eleven worlds. Infinite possibilities.</h2></div>
+      <a class="link-arrow" href="worlds.html">Explore all worlds&nbsp;&nbsp;<span aria-hidden="true">→</span></a>
+    </div>
+    <ul class="world-grid" id="world-grid"></ul>
+    <noscript><p class="noscript-note">This page builds the World list with JavaScript. The eleven Worlds are Aeon, Atmos, Narrative, Cast, Audio, Forge, Lens, Render, Stage, Cinema and Loop.</p></noscript>
+  </section>
+
+  <section class="brand-band" aria-labelledby="band-title">
+    <figure class="band-media">
+      <picture><source type="image/webp" media="(max-width:599px)" srcset="assets/img/brand-landscape-mobile-800x1000.webp"><source type="image/webp" srcset="assets/img/brand-landscape-1000.webp 1000w, assets/img/brand-landscape-1600.webp 1600w" sizes="(max-width:1023px) 100vw, 54vw"><img src="assets/img/brand-landscape-1000.jpg" alt="" width="1000" height="667" loading="lazy" decoding="async"></picture>
+      <div class="band-overlay">
+        <p class="eyebrow">Real tools<br>Real creators<br>A brighter tomorrow</p>
+        <hr><p class="it">Creation is a<br>human journey.</p>
+      </div>
+    </figure>
+    <div class="band-copy">
+      <p class="eyebrow">Built for a wider tomorrow</p>
+      <h2 id="band-title">Ideas move.<br>Worlds emerge.</h2>
+      <p>Sercle brings together AI, creativity and real-world expertise, so individuals and teams can explore, create and build without limits.</p>
+      <ul class="values">
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 4 20 0 24M16 4c-4 4-4 20 0 24"/></svg><p>One account<br>All worlds<span class="claim-note">Planned — not yet available</span></p></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="12" cy="11" r="4"/><circle cx="22" cy="12" r="3"/><path d="M4 26c0-5 4-8 8-8s8 3 8 8M20 19c4 0 8 2 8 7"/></svg><p>Built for creators<br>and professionals</p></li>
+        <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M10 11c-4 0-6 2.5-6 5s2 5 6 5c6 0 6-10 12-10 4 0 6 2.5 6 5s-2 5-6 5c-6 0-6-10-12-10z"/></svg><p>A growing universe<br>Continuous expansion</p></li>
+      </ul>
+      <div class="band-cta"><a class="btn btn-primary" href="account.html#join">Join Sercle <span aria-hidden="true">→</span></a></div>
+    </div>
+  </section>
 </main>
+<script src="assets/js/pages/home.js"></script>
+<div id="chrome-footer"></div>
+<script src="assets/js/chrome-boot.js"></script>
 </body>
 </html>

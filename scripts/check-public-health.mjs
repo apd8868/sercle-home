@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 
-import { assertDesignV1Identity } from './public-health-identity.mjs';
+import { assertWebsiteV1Identity } from './public-health-identity.mjs';
 
 const canonical = 'https://sercle.com';
 
@@ -13,7 +13,7 @@ async function request(url, redirect = 'manual') {
 
 const home = await request(canonical + '/', 'follow');
 assert.equal(home.status, 200, 'sercle.com must return HTTP 200');
-assertDesignV1Identity(await home.text());
+assertWebsiteV1Identity(await home.text());
 
 for (const path of ['/', '/platforms?monitor=1', '/about']) {
   const wwwUrl = 'https://www.sercle.com' + path;

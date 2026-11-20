@@ -20,7 +20,7 @@ jobs:
           node-version: 24
       - run: npm run check
       - run: node --test scripts/public-health-identity.test.mjs
-      - name: Verify candidate monitor identity
-        run: node --input-type=module -e "import {readFile} from 'node:fs/promises';import {assertDesignV1Identity} from './scripts/public-health-identity.mjs';assertDesignV1Identity(await readFile('./index.html','utf8'))"
+      - name: Verify homepage monitor identity
+        run: node --input-type=module -e "import {readFile} from 'node:fs/promises';import {assertWebsiteV1Identity} from './scripts/public-health-identity.mjs';assertWebsiteV1Identity(await readFile('./index.html','utf8'))"
       - name: Verify diff hygiene
         run: git diff --check "origin/${{ github.base_ref }}...HEAD"

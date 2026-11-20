@@ -1,15 +1,27 @@
 import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-import { assertDesignV1Identity } from './public-health-identity.mjs';
+import { assertWebsiteV1Identity } from './public-health-identity.mjs';
 
-const currentDesignV1 = `<!doctype html>
+const currentWebsiteV1 = `<!doctype html>
 <html><head>
-<link rel="canonical" href="https://sercle.com/">
 <title>Sercle — Every world begins with curiosity.</title>
-</head><body><h1 id="hero-title">Every world begins with curiosity.</h1></body></html>`;
+<link rel="canonical" href="https://sercle.com/">
+<script src="assets/js/worlds-data.js"></script>
+</head><body><h1 id="hero-title">Every world<br> begins with<br> <em>curiosity.</em></h1></body></html>`;
 
 const rejectedPages = {
+  'previous Design V1 R6 homepage': `<!doctype html><html><head>
+    <link rel="canonical" href="https://sercle.com/">
+    <title>Sercle — Every world begins with curiosity.</title>
+    </head><body><h1 id="hero-title">Every world begins with curiosity.</h1></body></html>`,
+  'local candidate build': `<!doctype html><html><head>
+    <title>Sercle — Every world begins with curiosity.</title>
+    <link rel="canonical" href="https://sercle.com/">
+    <script src="assets/js/worlds-data.js"></script>
+    </head><body><aside>LOCAL WEBSITE CANDIDATE — NOT PRODUCTION</aside>
+    <h1 id="hero-title">Every world<br> begins with<br> <em>curiosity.</em></h1></body></html>`,
   'obsolete Sercle homepage': `<!doctype html><html><head>
     <link rel="canonical" href="https://sercle.com/">
     <title>Sercle — Ideas become worlds</title>
@@ -24,12 +36,17 @@ const rejectedPages = {
   'unexpected non-Sercle page': '<!doctype html><html><head><title>Service available</title></head><body>OK</body></html>',
 };
 
-test('current Design V1 identity passes', () => {
-  assert.doesNotThrow(() => assertDesignV1Identity(currentDesignV1));
+test('current website V1 identity passes', () => {
+  assert.doesNotThrow(() => assertWebsiteV1Identity(currentWebsiteV1));
+});
+
+test('repository homepage passes', async () => {
+  const home = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  assert.doesNotThrow(() => assertWebsiteV1Identity(home));
 });
 
 for (const [name, html] of Object.entries(rejectedPages)) {
   test(`${name} fails`, () => {
-    assert.throws(() => assertDesignV1Identity(html));
+    assert.throws(() => assertWebsiteV1Identity(html));
   });
 }
