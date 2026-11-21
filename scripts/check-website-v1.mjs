@@ -14,14 +14,14 @@ const world = await read('assets/js/pages/world.js');
 const chrome = await read('assets/js/components.js');
 const na = await read('assets/js/pages/na.js');
 
-// Eleven Worlds, in order, with the two live public addresses.
+// Eleven Worlds, in order, with the three live public addresses.
 const ids = [...data.matchAll(/\{ id:'([a-z]+)'/g)].map((m) => m[1]);
 const expected = ['aeon', 'atmos', 'narrative', 'cast', 'audio', 'forge', 'lens', 'render', 'stage', 'cinema', 'loop'];
 if (ids.join() !== expected.join()) fail(`World list changed: ${ids.join()}`);
-for (const [id, url] of [['aeon', 'https://aeon.sercle.com'], ['atmos', 'https://atmos.sercle.com']]) {
+for (const [id, url] of [['aeon', 'https://aeon.sercle.com'], ['atmos', 'https://atmos.sercle.com'], ['loop', 'https://loop.sercle.com']]) {
   if (!new RegExp(`id:'${id}'[^}]*status:'live',\\s*publicUrl:'${url}'`).test(data)) fail(`Live World link missing: ${id}`);
 }
-for (const host of ['narrative', 'cast', 'audio', 'forge', 'lens', 'render', 'stage', 'cinema', 'loop']) {
+for (const host of ['narrative', 'cast', 'audio', 'forge', 'lens', 'render', 'stage', 'cinema']) {
   if ((data + world + Object.values(pages).join('')).includes(`${host}.sercle.com`)) fail(`Unresolved public host: ${host}.sercle.com`);
 }
 

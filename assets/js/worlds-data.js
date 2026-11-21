@@ -9,7 +9,7 @@ window.SERCLE_WORLDS = [
   { id:'render',    name:'Render',    copy:'Turn worlds into rendered reality.',                 status:'dev' },
   { id:'stage',     name:'Stage',     copy:'Turn stories into audiovisual productions.',         status:'dev' },
   { id:'cinema',    name:'Cinema',    copy:'A place for finished films and stories.',            status:'future' },
-  { id:'loop',      name:'Loop',      copy:'A social world for discovering and sharing video.',  status:'future' }
+  { id:'loop',      name:'Loop',      copy:'A social world for discovering and sharing video.',  status:'live',   publicUrl:'https://loop.sercle.com' }
 ];
 window.SERCLE_STATUS = {
   live:   { label:'Live',           cls:'s-live',   help:'Open to the public today.' },
